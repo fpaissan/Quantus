@@ -187,7 +187,7 @@ def assert_attributions(x_batch: np.array, a_batch: np.array) -> None:
         "which may cause inconsistent results since many metrics rely on ordering. "
         "Recompute the explanations."
     )
-    assert len(set(a_batch.flatten().tolist())) > 1, (
+    assert np.std(a_batch.flatten()) != 0, (
         "The attributions are uniformly distributed, "
         "which may cause inconsistent results since many "
         "metrics rely on ordering."
