@@ -250,7 +250,7 @@ class Complexity(Metric[List[float]]):
             newshape = np.prod(x.shape)
         else:
             newshape = np.prod(x.shape[1:])
-
+        a += 1e-10
         a = np.array(np.reshape(a, newshape), dtype=np.float64) / (np.sum(np.abs(a)) + 1e-9)
         return scipy.stats.entropy(pk=a)
 
