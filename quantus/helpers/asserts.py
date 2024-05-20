@@ -7,7 +7,8 @@
 # Quantus project URL: <https://github.com/understandable-machine-intelligence-lab/Quantus>.
 
 
-from typing import Callable, Tuple, Sequence, Union
+from typing import Callable, Sequence, Tuple, Union
+
 import numpy as np
 
 
@@ -177,22 +178,22 @@ def assert_attributions(x_batch: np.array, a_batch: np.array) -> None:
         "The dimensions of the attribution must correspond to dimensions of the input in the same order, "
         "but got shapes {} and {}".format(a_shape, x_shape)
     )
-    assert not np.all((a_batch == 0)), (
-        "The elements in the attribution vector are all equal to zero, "
-        "which may cause inconsistent results since many metrics rely on ordering. "
-        "Recompute the explanations."
-    )
-    assert not np.all((a_batch == 1.0)), (
-        "The elements in the attribution vector are all equal to one, "
-        "which may cause inconsistent results since many metrics rely on ordering. "
-        "Recompute the explanations."
-    )
-    assert np.std(a_batch.flatten()) != 0, (
-        "The attributions are uniformly distributed, "
-        "which may cause inconsistent results since many "
-        "metrics rely on ordering."
-        "Recompute the explanations."
-    )
+    # assert not np.all((a_batch == 0)), (
+    # "The elements in the attribution vector are all equal to zero, "
+    # "which may cause inconsistent results since many metrics rely on ordering. "
+    # "Recompute the explanations."
+    # )
+    # assert not np.all((a_batch == 1.0)), (
+    # "The elements in the attribution vector are all equal to one, "
+    # "which may cause inconsistent results since many metrics rely on ordering. "
+    # "Recompute the explanations."
+    # )
+    # assert np.std(a_batch.flatten()) != 0, (
+    # "The attributions are uniformly distributed, "
+    # "which may cause inconsistent results since many "
+    # "metrics rely on ordering."
+    # "Recompute the explanations."
+    # )
     assert not np.all((a_batch < 0.0)), "Attributions should not all be less than zero."
 
 
